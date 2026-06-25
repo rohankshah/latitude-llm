@@ -1,11 +1,8 @@
-import {
-  type MembershipRole,
-  type Organization,
-} from "@domain/organizations"
-import { generateId, RepositoryError, toRepositoryError, type OrganizationId } from "@domain/shared"
+import type { MembershipRole, Organization } from "@domain/organizations"
+import { generateId, type OrganizationId, type RepositoryError, toRepositoryError } from "@domain/shared"
 import { Effect } from "effect"
-import type { User } from "../entities/user.ts"
 import { OutboxEventWriter } from "../../../events/src/outbox-event-writer.ts"
+import type { User } from "../entities/user.ts"
 
 export interface CreateAccountInput {
   /** Organization the request is scoped to (the active org for OAuth, the org owning the API key otherwise). */
@@ -53,7 +50,7 @@ export const createAccountUseCase = Effect.fn("users.createAccount")(function* (
       organizationId: "system",
       payload: {
         email: input.email,
-        magicLinkUrl: '/',
+        magicLinkUrl: "/",
         organizationId: "system",
       },
     })
