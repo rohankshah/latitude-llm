@@ -98,6 +98,8 @@ function LoginPage() {
         return
       }
 
+      console.log('callbackURL', callbackURL)
+
       await sendMagicLink({
         data: {
           email: emailValue,
